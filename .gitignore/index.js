@@ -14,10 +14,13 @@ bot.on('ready',  ()  =>  {
 })
 
  bot.on('message', message => {
-   if(message.content.toLowerCase().includes("merde")){
+   if(message.content.toLowerCase().includes("merde" || "connard" || "con" || "pute" || "conasse" || "connasse" || "tg" )){
        message.delete();
        message.reply("Évitez de dire une insulte ! Merci.");
 }
+       
+if(message.content.startwith === prefix + "help"){
+message.reply("**Bienvenue dans l'aide de l'Azkun bot ! Ce bot n'est pas encore fini, revenai plus tard !**")}
    });
         
     bot.login(token);
