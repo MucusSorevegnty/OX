@@ -10,7 +10,7 @@ const prefix = "az.";
 
 bot.on('ready',  ()  =>  {
       bot.user.setActivity(`az.help | ${bot.guilds.size} serveur | Par Azkun.`);
-      
+      console.log("Prêt -----------------");
 })
 
 bot.login(token);
