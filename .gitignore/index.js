@@ -13,9 +13,10 @@ bot.on('ready',  ()  =>  {
       console.log("Prêt -----------------");
 })
 
-bot.login(token);
  bot.on('message', message => {
    if(message.content.toLowerCase().includes("merde")){
-message.reply("Évitez de dire une insulte ! Merci.")
+message.reply("Évitez de dire une insulte ! Merci.");
 }
-   }
+   });
+        
+    bot.login(token);
