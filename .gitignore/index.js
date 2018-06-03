@@ -10,10 +10,11 @@ const prefix = "az.";
 
 bot.on('ready',  ()  =>  {
       bot.user.setActivity(`az.help | ${bot.guilds.size} serveur | Par Azkun.`);
+      
 })
 
 bot.login(token);
- 
+bot.on('message' (message) =>
 message.content.toLowerCase().includes("merde"){
 message.reply("Évitez de dire une insulte ! Merci.")
-}
+});
