@@ -15,7 +15,8 @@ bot.on('ready',  ()  =>  {
 
  bot.on('message', message => {
    if(message.content.toLowerCase().includes("merde")){
-message.reply("Évitez de dire une insulte ! Merci.");
+       message.delete();
+       message.reply("Évitez de dire une insulte ! Merci.");
 }
    });
         
