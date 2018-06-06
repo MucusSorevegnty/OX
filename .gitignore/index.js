@@ -5,12 +5,11 @@ const token = process.env.SECRET;
 const admins_id = [
 '285418210965323776'
 ];
-const prefix = "az.";
+var prefix = "az.";
 /*  /-- BOT CONFIGURATION --/  */
 
 bot.on('ready',  ()  =>  {
-      bot.user.setActivity(`az.help | ${bot.guilds.size} serveur | Par Azkun.`);
-      bot.user.setAvatar("https://cdn.discordapp.com/attachments/452786343416692736/453265503851380766/JPEG_20180604_203413.jpg");
+      bot.user.setActivity(`az.help | ${bot.guilds.size} serveurs | Par Azkun.`);
       console.log("Prêt -----------------");
 })
 
@@ -18,10 +17,8 @@ bot.on('ready',  ()  =>  {
     var randomHex = "#000000".replace(/0/g, function() {
         return (~~(Math.random() * 16)).toString(16);
   });
+  const args = message.content.slice(prefix.length).split(' ');
   
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-
     if(message.content.toLowerCase().includes("merde" )){
         if(message.member.hasPermission("ADMINISTRATOR")){
             return;
@@ -38,7 +35,7 @@ if(message.content.toLowerCase().includes("pute" )){
     message.reply("Évitez de dire une insulte ! Merci.");
     }
 }
-if(command == "casino"){
+if(message.content.startsWith(prefix + "casino")){
     let repliezes = [
             "**Bienvenue dans le casino** ! Ici ! Tu vas savoir si tu à de la chance : \n ===== \n 💎♦♠ \n ===== \n **Dommage ! Tu a perdu :/**",
             "**Bienvenue dans le casino** ! Ici ! Tu vas savoir si tu à de la chance : \n ===== \n 💎♠💎 \n ===== \n **Dommage ! Tu a perdu :/**",
@@ -86,7 +83,7 @@ if(message.content.toLowerCase().includes("tg" )){
     }
 }
        
-if(command === "help"){
+if(message.content.startsWith(prefix + "help")){
     var embed_help = new Discord.RichEmbed()
 .setDescription("**Bienvenue dans l'aide de l'Azkun bot !** \n \n `az.8ball` : Répond à une question posée ! \n `az.casino` : Joue au casino ! \n `az.help` : Te dis la liste des commandes ! \n `az.info` : Te donnes plein d'informations à propos d'AzkunBot \n `az.invite` : T'envoie le lien pour m'ajouter sur tes serveurs ! \n `az.ping` : Te donne le temps de latence avec le serveur ! \n `az.say` : Répète un message !")
 .setAuthor("AzkunBot","https://cdn.discordapp.com/attachments/452786343416692736/453265503851380766/JPEG_20180604_203413.jpg")
@@ -94,7 +91,37 @@ if(command === "help"){
 .setColor(randomHex);
 message.channel.send(embed_help);
 }
-if(command === "info"){
+if(message.content.startsWith == prefix + "pfc"){
+    let user_choice = args.join(" ");
+    if(user_choice == "pierre" || "Pierre"){
+    let Pierre = [
+            "😢 \n **Azkunbot** a gagné, il a utilisé **Feuille**",
+            "😃 \n **Égalité !** Car **Azkunbot** a utilisé **Pierre**",
+            "😁 \n **Azkunbot** a perdu ! Il a utilisé **Ciseau**"
+        ] 
+        let Pierre_reponse = (Pierre[Math.floor(Math.random() * Pierre.length)]) 
+        message.reply(Pierre_reponse);
+    }else if(user_choice == "ciseaux" || "Ciseaux"){
+    let Ciseaux = [
+            "😁 \n **Azkunbot** a perdu, il a utilisé **Feuille**",
+            "😢 \n **Azkunbot** a gagné, il a utilisé **Pierre**",
+            "😃 \n **Égalité** car **Azkunbot** à utilisé **Ciseau**"
+        ] 
+        let Ciseaux_reponse = (Ciseaux[Math.floor(Math.random() * Ciseaux.length)])
+        message.reply(Ciseaux_reponse);
+    }else if(user_choice == "feuille" || "Feuille"){
+    let Feuille = [
+            "😃 \n **Égalité** car **Azkunbot** a utilisé **Feuille**",
+            "😁 \n **Azkunbot** a perdu, il a utilisé **Pierre**",
+            "😢 \n **Azkunbot** à gagné, il a utilisé**Ciseau**"
+        ] 
+        let Feuille_reponse = (Feuille[Math.floor(Math.random() * Feuille.length)])
+        message.reply(Feuille_reponse);
+    }else{
+        message.reply("Merci d'entrez un choix valide \n **Pierre** **Feuille** ou **Ciseaux** !");
+    }
+}
+if(message.content.startsWith(prefix + "info")){
     var info_embed = new Discord.RichEmbed()
     .setAuthor("Voici les informations du bot", "https://cdn.discordapp.com/attachments/452786343416692736/453265503851380766/JPEG_20180604_203413.jpg")
      .addField("1) :desktop: Développeurs !"," Ce bot a été développé par : \n Superyastiquereuros \n Azkun \n \n")
@@ -105,8 +132,8 @@ if(command === "info"){
     .setColor(randomHex);
     message.channel.send(info_embed);
 }
-if(command === "8ball"){
-    let question = args.slice(1).join(" ");
+if(message.content.startsWith(prefix + "8ball")){
+    let question = args.join(" ");
     if(!question){
        message.reply(":x: Merci de poser une question valide.")
     }else{
@@ -122,10 +149,10 @@ if(command === "8ball"){
 }
     
 }
-if(command === "ping"){
+if(message.content.startsWith(prefix +"ping")){
     message.reply('Pong :ping_pong: `' + `${message.createdTimestamp - Date.now()}` + ' ms`');
 }
-if(command === "say"){
+if(message.content.startsWith(prefix + "say")){
     message.delete();
     let texte = args.slice(0).join(" ");
     if(!texte){
@@ -134,8 +161,7 @@ if(command === "say"){
         message.reply(texte);
     }
 }
-
-if(command ==="invite"){
+if(message.content.startsWith(prefix + "invite")){
                 message.reply(" 💌 Merci à toi si tu m'ajoute |  https://discordapp.com/api/oauth2/authorize?client_id=451814700653740032&scope=bot&permissions=1836383425")
  }
 
