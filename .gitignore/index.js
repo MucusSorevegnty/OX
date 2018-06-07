@@ -199,7 +199,45 @@ if(message.content.startsWith(prefix + "someone")){
     }else{
     message.reply(`Je chosis **${message.guild.members.random().displayName}** !`);
     }
-}   
+}
+if(message.content.startsWith(prefix + "google")){
+    let google_recherche = args.join(" ").slice(0);
+    if(!google_recherche) return message.reply("Il me faut une recherche et sans espaces dans la recherhce.");
+    var google_embed = new Discord.RichEmbed()
+    .setTitle("__Recherche Google__")
+    .setDescription("Votre recherche à bien été effectué : " + google_recherche + "Lien [ICI](https://www.google.com/search?q=" + google_recherche + " )")
+    .setFooter("Commande demandée par " + message.author.username, message.author.avatarURL)
+    .setColor(randomHex);
+    message.reply(google_embed);
+
+}
+if(message.content.startsWith(prefix + "hug")){
+    let hug_images = [
+        "https://cdn.discordapp.com/attachments/423542169677201439/454321571033645059/hug.png",
+        "https://cdn.discordapp.com/attachments/423542169677201439/454321703754006548/hug.png",
+        "https://cdn.discordapp.com/attachments/423542169677201439/454321669151129600/hug.png"
+    ]
+    let hug1 = (hug_images[Math.floor(Math.random() * hug_images.length)]);
+     message.channel.sendFile(hug1);
+}
+if(message.content.startsWith(prefix + "kiss")){
+    let kiss_iamges = [
+        "https://cdn.weeb.sh/images/B1NwJg9Jz.gif",
+        "https://cdn.weeb.sh/images/ry-r3TuD-.gif",
+        "https://cdn.weeb.sh/images/r10UnpOPZ.gif"
+    ]
+    let kiss1 = (kiss_iamges[Math.floor(Math.random() * kiss_iamges.length)]);
+    message.channel.sendFile(kiss1);
+}
+if(message.content.startsWith(prefix + "slap")){
+    let slap_images = [
+    "https://cdn.weeb.sh/images/SJzT7JKP-.gif",
+    "https://cdn.weeb.sh/images/ByHUMRNR-.gif",
+    "https://cdn.weeb.sh/images/r1dc7yFvZ.gif"
+    ]
+    let slap1 = (slap_images[Math.floor(Math.random() * slap_images.length)]);
+    message.channel.sendFile(slap1);
+} 
 if(message.content.startsWith(prefix + "invite")){
                 message.reply(" 💌 Merci à toi si tu m'ajoute |  https://discordapp.com/api/oauth2/authorize?client_id=451814700653740032&scope=bot&permissions=1836383425")
  }});
