@@ -85,42 +85,73 @@ if(message.content.toLowerCase().includes("tg" )){
        
 if(message.content.startsWith(prefix + "help")){
     var embed_help = new Discord.RichEmbed()
-.setDescription("**Bienvenue dans l'aide de l'Azkun bot !** \n \n `az.8ball` : Répond à une question posée ! \n `az.casino` : Joue au casino ! \n `az.help` : Te dis la liste des commandes ! \n `az.info` : Te donnes plein d'informations à propos d'AzkunBot \n `az.invite` : T'envoie le lien pour m'ajouter sur tes serveurs ! \n `az.ping` : Te donne le temps de latence avec le serveur ! \n `az.say` : Répète un message !")
+.setDescription("**Bienvenue dans l'aide de l'Azkun bot !** \n \n `az.8ball` : Répond à une question posée ! \n `az.casino` : Joue au casino ! \n `az.help` : Te dis la liste des commandes ! \n `az.hug` : Poste une image de callin au hasard ! \n`az.info` : Te donnes plein d'informations à propos d'AzkunBot \n `az.invite` : T'envoie le lien pour m'ajouter sur tes serveurs ! \n `az.kiss` : Poste une image de bisous au hsard ! \n`az.ping` : Te donne le temps de latence avec le serveur ! \n `az.pfc`: Joue au jeu du pierre, feuille, ciseaux ! \n `az.say` : Répète un message ! \n `az.slap` : Poste une image de claque au hasard ! \n `az.someone` : Mentionne une personne du serveur au hasard !")
 .setAuthor("AzkunBot","https://cdn.discordapp.com/attachments/452786343416692736/453265503851380766/JPEG_20180604_203413.jpg")
 .setFooter("Commande demandée par " + message.author.username, message.author.avatarURL)
 .setColor(randomHex);
 message.channel.send(embed_help);
 }
-if(message.content.startsWith == prefix + "pfc"){
-    let user_choice = args.join(" ");
-    if(user_choice == "pierre" || "Pierre"){
-    let Pierre = [
-            "😢 \n **Azkunbot** a gagné, il a utilisé **Feuille**",
-            "😃 \n **Égalité !** Car **Azkunbot** a utilisé **Pierre**",
-            "😁 \n **Azkunbot** a perdu ! Il a utilisé **Ciseau**"
-        ] 
-        let Pierre_reponse = (Pierre[Math.floor(Math.random() * Pierre.length)]) 
-        message.reply(Pierre_reponse);
-    }else if(user_choice == "ciseaux" || "Ciseaux"){
-    let Ciseaux = [
-            "😁 \n **Azkunbot** a perdu, il a utilisé **Feuille**",
-            "😢 \n **Azkunbot** a gagné, il a utilisé **Pierre**",
-            "😃 \n **Égalité** car **Azkunbot** à utilisé **Ciseau**"
-        ] 
-        let Ciseaux_reponse = (Ciseaux[Math.floor(Math.random() * Ciseaux.length)])
-        message.reply(Ciseaux_reponse);
-    }else if(user_choice == "feuille" || "Feuille"){
-    let Feuille = [
-            "😃 \n **Égalité** car **Azkunbot** a utilisé **Feuille**",
-            "😁 \n **Azkunbot** a perdu, il a utilisé **Pierre**",
-            "😢 \n **Azkunbot** à gagné, il a utilisé**Ciseau**"
-        ] 
-        let Feuille_reponse = (Feuille[Math.floor(Math.random() * Feuille.length)])
-        message.reply(Feuille_reponse);
-    }else{
-        message.reply("Merci d'entrez un choix valide \n **Pierre** **Feuille** ou **Ciseaux** !");
+if(message.content.startsWith(prefix + "pfc")){
+		let splitMessage = message.content.split(" "); 
+		if(splitMessage[0] === 'çpfc') 
+				var userChoice = splitMessage[1]; 
+				var botChoice = Math.floor(Math.random() * 3); 
+				var stone = ":new_moon:"; 
+				var leaf = ":fallen_leaf:"; 
+                var scissors = ":scissors:";
+                switch(botChoice){
+                    case 0:
+                    var botChoice = "Pierre"
+					break;
+					case 1:
+					var botChoice = "Feuille"
+					break;
+					case 2:
+					var botChoice = "Ciseaux"
+					break;
+					default:
+					message.channel.send(":warning:")
+				}
+				switch ( userChoice ) {
+					case "Pierre":
+					case "pierre":
+					if (botChoice === "Pierre") {
+						message.channel.send("😃 \n **Égalité** car **Azkunbot** a également utilisé **Pierre**" + stone);
+					} else if (botChoice === "Feuille") {
+						message.channel.send("😢 \n Vous avez perdu car **AzkunBot** a utilisé **Feuille**" + leaf);
+					} else if (botChoice === "Ciseaux") {
+						message.channel.send("😁 \n Vous gagnez car **AzkunBot** a utilisé **Ciseuax** " + scissors);
+					}
+                    break;
+					case "Feuille":
+					case "feuille":
+					if (botChoice === "Pierre") {
+						message.channel.send("😁 \n Vous gagnez car **AzkunBot** a utilisé **Pierre** "+ stone);
+					} else if (botChoice === "Feuille") {
+						message.channel.send("😃 \n **Égalité** car **Azkunbot** a également utilisé **Feuille**" + leaf);
+					} else if (botChoice === "Ciseaux") {
+						message.channel.send("😢 \n Vous avez perdu car **AzkunBot** a utilisé **Ciseaux**" + scissors);
+					}
+					break;
+					case "Ciseaux":
+					case "ciseaux":
+					if (botChoice === "Pierre") {
+						message.channel.send("😢 \n Vous avez perdu car **AzkunBot** a utilisé **Pierre**" + stone);
+
+					} else if (botChoice === "Feuille") {
+						message.channel.send("😁 \n Vous gagnez car **AzkunBot** a utilisé **Feuille**" +leaf)
+						
+					} else if (botChoice === "Ciseaux") {
+						message.channel.send("😃 \n **Égalité** car **Azkunbot** a également utilisé **Ciseaux**" + scissors)
+					}
+					break;
+					default:
+					message.channel.send(":warning: Merci d'entrez un choix valide ! :warning: \n **Pierre** " +stone+ " ; **Feuille** " +leaf+ " ou **Ciseaux** " +scissors+ " !")
+					message.channel.send()
+				}
+    
     }
-}
+    
 if(message.content.startsWith(prefix + "info")){
     var info_embed = new Discord.RichEmbed()
     .setAuthor("Voici les informations du bot", "https://cdn.discordapp.com/attachments/452786343416692736/453265503851380766/JPEG_20180604_203413.jpg")
@@ -154,17 +185,23 @@ if(message.content.startsWith(prefix +"ping")){
 }
 if(message.content.startsWith(prefix + "say")){
     message.delete();
-    let texte = args.slice(0).join(" ");
+    let texte = args.slice(1).join(" ");
     if(!texte){
         message.reply("Merci d'indiquer le texte à répeter !");
     }else{
         message.reply(texte);
     }
 }
+
+if(message.content.startsWith(prefix + "someone")){
+    if(!message.guild){
+        message.reply(`Cette commmande doit être éxécuté sur une guild !`)
+    }else{
+    message.reply(`Je chosis **${message.guild.members.random().displayName}** !`);
+    }
+}   
 if(message.content.startsWith(prefix + "invite")){
                 message.reply(" 💌 Merci à toi si tu m'ajoute |  https://discordapp.com/api/oauth2/authorize?client_id=451814700653740032&scope=bot&permissions=1836383425")
- }
-
- });
+ }});
         
 bot.login(token);
