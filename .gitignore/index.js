@@ -92,8 +92,8 @@ if(message.content.startsWith(prefix + "help")){
 message.channel.send(embed_help);
 }
 if(message.content.startsWith(prefix + "pfc")){
+    console.log("Commande pfc")
 		let splitMessage = message.content.split(" "); 
-		if(splitMessage[0] === 'çpfc') 
 				var userChoice = splitMessage[1]; 
 				var botChoice = Math.floor(Math.random() * 3); 
 				var stone = ":new_moon:"; 
