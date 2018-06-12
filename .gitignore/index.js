@@ -85,11 +85,15 @@ if(message.content.toLowerCase().includes("tg" )){
        
 if(message.content.startsWith(prefix + "help")){
     var embed_help = new Discord.RichEmbed()
-.setDescription("**Bienvenue dans l'aide de l'Azkun bot !** \n \n `az.8ball` : Répond à une question posée ! \n `az.casino` : Joue au casino ! \n `az.help` : Te dis la liste des commandes ! \n `az.hug` : Poste une image de callin au hasard ! \n`az.info` : Te donnes plein d'informations à propos d'AzkunBot \n `az.invite` : T'envoie le lien pour m'ajouter sur tes serveurs ! \n `az.kiss` : Poste une image de bisous au hsard ! \n`az.ping` : Te donne le temps de latence avec le serveur ! \n `az.pfc`: Joue au jeu du pierre, feuille, ciseaux ! \n `az.say` : Répète un message ! \n `az.slap` : Poste une image de claque au hasard ! \n `az.someone` : Mentionne une personne du serveur au hasard !")
-.setAuthor("AzkunBot","https://cdn.discordapp.com/attachments/452786343416692736/453265503851380766/JPEG_20180604_203413.jpg")
+.setDescription("__**Bienvenue dans l'aide de l'Azkun bot !**__ \nAzkunBot à pour l'instant un total de `15` commandes.\n \n `az.8ball` : Répond à une question posée ! \n `az.attackZombie` : Permet d'attaquer un zombie ! \n `az.casino` : Joue au casino ! \n `az.google` : Permet d'éffectuer une rehcrhe google ! \n `az.help` : Te dis la liste des commandes ! \n `az.hug` : Poste une image de callin au hasard ! \n`az.info` : Te donnes plein d'informations à propos d'AzkunBot \n `az.invite` : T'envoie le lien pour m'ajouter sur tes serveurs ! \n `az.kiss` : Poste une image de bisous au hsard ! \n `az.pfc`: Joue au jeu du pierre, feuille, ciseaux ! \n `az.ping` : Te donne le temps de latence avec le serveur ! \n `az.playgame` : Permet de consulter la liste des mini-jeux ! \n `az.say` : Répète un message ! \n `az.slap` : Poste une image de claque au hasard ! \n `az.someone` : Mentionne une personne du serveur au hasard ! \n ")
+.setAuthor("AzkunBot", bot.user.avatarURL)
 .setFooter("Commande demandée par " + message.author.username, message.author.avatarURL)
 .setColor(randomHex);
 message.channel.send(embed_help);
+}
+
+if(message.content.startsWith(prefix + "playgame")){
+    message.reply("🎮 Bienvenue dans le menu des Minis Jeux ! 🎮 \n `az.playgameHulk`      `az.playgameEat` \n `az.playgameDoodles`         `az.playgamePierreP` \n \n Voici les seuls jeux pour l'instant !")
 }
 if(message.content.startsWith(prefix + "pfc")){
     console.log("Commande pfc")
@@ -154,7 +158,7 @@ if(message.content.startsWith(prefix + "pfc")){
     
 if(message.content.startsWith(prefix + "info")){
     var info_embed = new Discord.RichEmbed()
-    .setAuthor("Voici les informations du bot", "https://cdn.discordapp.com/attachments/452786343416692736/453265503851380766/JPEG_20180604_203413.jpg")
+    .setAuthor("Voici les informations du bot", bot.user.avatarURL)
      .addField("1) :desktop: Développeurs !"," Ce bot a été développé par : \n Superyastiquereuros \n Azkun \n \n")
      .addField("2) :date: Dates", "Azkunbot est né en 2018, le dimanche 3 juin ! \n \n")
     .addField("3) :newspaper: Hébergement", " L'hébergeur n'est pas encore défini !")
@@ -164,7 +168,7 @@ if(message.content.startsWith(prefix + "info")){
     message.channel.send(info_embed);
 }
 if(message.content.startsWith(prefix + "8ball")){
-    let question = args.join(" ");
+    let question = args.slice(1).join(" ");
     if(!question){
        message.reply(":x: Merci de poser une question valide.")
     }else{
@@ -200,17 +204,7 @@ if(message.content.startsWith(prefix + "someone")){
     message.reply(`Je chosis **${message.guild.members.random().displayName}** !`);
     }
 }
-if(message.content.startsWith(prefix + "google")){
-    let google_recherche = args.join(" ").slice(0);
-    if(!google_recherche) return message.reply("Il me faut une recherche et sans espaces dans la recherhce.");
-    var google_embed = new Discord.RichEmbed()
-    .setTitle("__Recherche Google__")
-    .setDescription("Votre recherche à bien été effectué : " + google_recherche + "Lien [ICI](https://www.google.com/search?q=" + google_recherche + " )")
-    .setFooter("Commande demandée par " + message.author.username, message.author.avatarURL)
-    .setColor(randomHex);
-    message.reply(google_embed);
 
-}
 if(message.content.startsWith(prefix + "hug")){
     let hug_images = [
         "https://cdn.discordapp.com/attachments/423542169677201439/454321571033645059/hug.png",
@@ -237,7 +231,36 @@ if(message.content.startsWith(prefix + "slap")){
     ]
     let slap1 = (slap_images[Math.floor(Math.random() * slap_images.length)]);
     message.channel.sendFile(slap1);
-} 
+}
+if(message.content.startsWith(prefix + "attackZombie")){
+    let deroulements = [ 
+                  "Recherche d'un Zombie en cours.... Zombie trouvé ! \n ⚔ Voulez vous combattre *Greg* Avec un ami ? (Utilise la commande az.attackZombie1 si tu veux le faire seul, ou az.attackZombie2 si tu veux jouer avec un ami, ou az.attackZombie0 si vous voulez annuler !) ⚔",
+            "Recherche d'un Zombie en cours.... \n 😥 Aucun Zombie trouvé :/ reesayez plus tard ! 😥",
+            "Recherche d'un Zombie en cours.... \n 😉 Zombie trouvé, mais ton personnage est malade, reesaye plus tard 😉",
+                  "Recherche d'un Zombie en cours.... Zombie trouvé ! \n ⚔ Voulez vous combattre *Enissay* Avec un ami ? (Utilise la commande az.attackZombie1 si tu veux le faire seul, ou az.attackZombie2 si tu veux jouer avec un ami, ou az.attackZombie0 si vous voulez annuler !) ⚔",
+                  "Recherche d'un Zombie en cours.... Zombie trouvé ! \n ⚔ Voulez vous combattre *EthanLink* Avec un ami ? (Utilise la commande az.attackZombie1 si tu veux le faire seul, ou az.attackZombie2 si tu veux jouer avec un ami, ou az.attackZombie0 si vous voulez annuler !) ⚔",
+                  "Recherche d'un Zombie en cours.... Zombie trouvé ! \n ⚔ Voulez vous combattre *JuL* Avec un ami ? (Utilise la commande az.attackZombie1 si tu veux le faire seul, ou az.attackZombie2 si tu veux jouer avec un ami, ou az.attackZombie0 si vous voulez annuler !) ⚔"
+        ]
+        let deroulement_01 = ( deroulements[Math.floor(Math.random() * deroulements.length)])
+        message.channel.sendMessage(deroulement_01);
+    }
+    
+    if(message.content.startsWith(prefix + "attackZombie0")){
+            message.channel.sendMessage("D'accord ! J'annule donc la recherche ! Adieu Zombie....");
+    }
+    if(message.content.startsWith(prefix + "google")){
+        var recherche = args.join(' ').slice(7);
+        if(recherche){
+        var google_embed = new Discord.RichEmbed()
+        .setTitle('Recherhe Google')
+        .setDescription(`Votre recherche a été effctué avec succès ! \n**Voici le lien de votre recherhe**: https://www.google.com/search?q=${recherche}`)
+        .setFooter('Commande demandée par ' + message.author.username, message.author.avatarURL)
+        .setColor(randomHex)
+        message.channel.send(google_embed);
+        }else{
+            return;
+        }
+    } 
 if(message.content.startsWith(prefix + "invite")){
                 message.reply(" 💌 Merci à toi si tu m'ajoute |  https://discordapp.com/api/oauth2/authorize?client_id=451814700653740032&scope=bot&permissions=1836383425")
  }});
