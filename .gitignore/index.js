@@ -92,9 +92,19 @@ if(message.content.startsWith(prefix + "help")){
 message.channel.send(embed_help);
 }
 
+
 if(message.content.startsWith(prefix + "playgame")){
-    message.reply("🎮 Bienvenue dans le menu des Minis Jeux ! 🎮 \n `az.playgameHulk`      `az.playgameEat` \n `az.playgameDoodles`         `az.playgamePierreP` \n \n Voici les seuls jeux pour l'instant !")
+    message.channel.sendMessage("🎮 Bienvenue dans le menu des Minis Jeux ! 🎮 \n `az.playgameHulk`      `az.playgameEat` \n `az.playgameDoodles`         `az.playgamePierreP` \n \n Voici les seuls jeux pour l'instant !")
 }
+if(message.content.startsWith(prefix + "playgameHulk")){
+    message.channel.sendMessage("Bienvenue dans le PlayGame Hulk ! Es-tu prêt à jouer ? Si oui, écris az.playgameHulkReady ! Dans ce jeu, tu devra démolir le plus de ville possible ! Attention ! Un classement a été créé et est en bêta ! Pour l'avoir, fais az.playgameHulkYStats ! Bon en tout cas, bonne chance + message.author.username + ! ")
+    }
+    if(message.content.startsWith(prefix + "playgameHulkYStats")){
+        message.channel.sendMessage("__**Voici le grand classement**__ \n (Tu n'est pas compté dedans) \n \n \n 1 - Azkun & Superyastiquereuros | 100000000002019288828292992929292992918373929283829292002 \n 2 - Azkunbot | 1000000000000000000001230000000000000200004002004 \n 3 - TheCheater (PNJ) - Infinite -10000000000000000 \n -=[.                      .]=- \n Voilà pour le top trois ! Désolé ce n'est encore qu'en bêta !")
+        }
+     if(message.content.startsWith(prefix + "website")){
+        message.channel.sendMessage(`:love_letter: | ${message.author.username}, merci d'avance si tu visite le site ! https://azkunbot.simplesite.com/`)
+        }
 if(message.content.startsWith(prefix + "pfc")){
     console.log("Commande pfc")
 		let splitMessage = message.content.split(" "); 
@@ -162,7 +172,7 @@ if(message.content.startsWith(prefix + "info")){
      .addField("1) :desktop: Développeurs !"," Ce bot a été développé par : \n Superyastiquereuros \n Azkun \n \n")
      .addField("2) :date: Dates", "Azkunbot est né en 2018, le dimanche 3 juin ! \n \n")
     .addField("3) :newspaper: Hébergement", " L'hébergeur n'est pas encore défini !")
-    .addField("4) :paperclips: Liens", "[Rejoindre mon serveur de support](https://discord.gg/XCzk8TF)\n[M'inviter sur votre serveur](https://discordapp.com/api/oauth2/authorize?client_id=451814700653740032&scope=bot&permissions=1836383425)")
+    .addField("4) :paperclips: Liens", "[Rejoindre mon serveur de support](https://discord.gg/XCzk8TF)\n[M'inviter sur votre serveur](https://discordapp.com/api/oauth2/authorize?client_id=451814700653740032&scope=bot&permissions=1836383425)\n[Visiter mon site web](https://azkunbot.simplesite.com)")
     .setFooter("Commande demandée par " + message.author.username, message.author.avatarURL)
     .setColor(randomHex);
     message.channel.send(info_embed);
@@ -170,7 +180,7 @@ if(message.content.startsWith(prefix + "info")){
 if(message.content.startsWith(prefix + "8ball")){
     let question = args.slice(1).join(" ");
     if(!question){
-       message.reply(":x: Merci de poser une question valide.")
+       message.channel.sendMessage(":x: Merci de poser une question valide.")
     }else{
     let repliques = [
         "Oui.",
@@ -180,28 +190,28 @@ if(message.content.startsWith(prefix + "8ball")){
         "Tout indique que non"
     ]
     let reponse = (repliques[Math.floor(Math.random() * repliques.length)])
-    message.reply(":8ball: **" + reponse + "**, " + message.author.username + ":8ball:")
+    message.channel.sendMessage(":8ball: **" + reponse + "**, " + message.author.username + ":8ball:")
 }
     
 }
 if(message.content.startsWith(prefix +"ping")){
-    message.reply('Pong :ping_pong: `' + `${message.createdTimestamp - Date.now()}` + ' ms`');
+    message.channel.sendMessage('Pong :ping_pong: `' + `${message.createdTimestamp - Date.now()}` + ' ms`');
 }
 if(message.content.startsWith(prefix + "say")){
     message.delete();
     let texte = args.slice(1).join(" ");
     if(!texte){
-        message.reply("Merci d'indiquer le texte à répeter !");
+        message.channel.sendMessage("Merci d'indiquer le texte à répeter !");
     }else{
-        message.reply(texte);
+        message.channel.sendMessage(texte);
     }
 }
 
 if(message.content.startsWith(prefix + "someone")){
     if(!message.guild){
-        message.reply(`Cette commmande doit être éxécuté sur une guild !`)
+        message.channel.sendMessage(`Cette commmande doit être éxécuté sur une guild !`)
     }else{
-    message.reply(`Je chosis **${message.guild.members.random().displayName}** !`);
+    message.channel.sendMessage(`Je chosis **${message.guild.members.random().displayName}** !`);
     }
 }
 
@@ -262,7 +272,7 @@ if(message.content.startsWith(prefix + "attackZombie")){
         }
     } 
 if(message.content.startsWith(prefix + "invite")){
-                message.reply(" 💌 Merci à toi si tu m'ajoute |  https://discordapp.com/api/oauth2/authorize?client_id=451814700653740032&scope=bot&permissions=1836383425")
+                message.channel.sendMessage(" 💌 Merci à toi si tu m'ajoute |  https://discordapp.com/api/oauth2/authorize?client_id=451814700653740032&scope=bot&permissions=1836383425")
  }});
         
 bot.login(token);
