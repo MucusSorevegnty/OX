@@ -85,13 +85,12 @@ if(message.content.toLowerCase().includes("tg" )){
        
 if(message.content.startsWith(prefix + "help")){
     var embed_help = new Discord.RichEmbed()
-.setDescription("__**Bienvenue dans l'aide de l'Azkun bot !**__ \nAzkunBot à pour l'instant un total de `15` commandes.\n \n `az.8ball` : Répond à une question posée ! \n `az.attackZombie` : Permet d'attaquer un zombie ! \n `az.casino` : Joue au casino ! \n `az.google` : Permet d'éffectuer une rehcrhe google ! \n `az.help` : Te dis la liste des commandes ! \n `az.hug` : Poste une image de callin au hasard ! \n`az.info` : Te donnes plein d'informations à propos d'AzkunBot \n `az.invite` : T'envoie le lien pour m'ajouter sur tes serveurs ! \n `az.kiss` : Poste une image de bisous au hsard ! \n `az.pfc`: Joue au jeu du pierre, feuille, ciseaux ! \n `az.ping` : Te donne le temps de latence avec le serveur ! \n `az.playgame` : Permet de consulter la liste des mini-jeux ! \n `az.say` : Répète un message ! \n `az.slap` : Poste une image de claque au hasard ! \n `az.someone` : Mentionne une personne du serveur au hasard ! \n ")
+.setDescription("__**Bienvenue dans l'aide de l'Azkun bot !**__ \nAzkunBot à pour l'instant un total de `18` commandes.\n \n `az.8ball` : Répond à une question posée ! \n `az.attackZombie` : Permet d'attaquer un zombie ! \n `az.casino` : Joue au casino ! \n `az.emoji` : Permet de consulter la liste des émojis de la guild ! \n `az.google` : Permet d'éffectuer une rehcrhe google ! \n `az.help` : Te dis la liste des commandes ! \n `az.hug` : Poste une image de callin au hasard ! \n`az.info` : Te donnes plein d'informations à propos d'AzkunBot \n `az.invite` : T'envoie le lien pour m'ajouter sur tes serveurs ! \n `az.kiss` : Poste une image de bisous au hsard ! \n `az.pfc`: Joue au jeu du pierre, feuille, ciseaux ! \n `az.ping` : Te donne le temps de latence avec le serveur ! \n `az.playgame` : Permet de consulter la liste des mini-jeux ! \n `az.say` : Répète un message ! \n `az.suggest` : Permet d'envoyer une suggestion à mes développeurs ! \n`az.slap` : Poste une image de claque au hasard ! \n `az.someone` : Mentionne une personne du serveur au hasard !\n `az.support` : Permet 'obtenir le lien d'invitation vers ma guild de support ! \n ")
 .setAuthor("AzkunBot", bot.user.avatarURL)
 .setFooter("Commande demandée par " + message.author.username, message.author.avatarURL)
 .setColor(randomHex);
 message.channel.send(embed_help);
 }
-
 
 if(message.content.startsWith(prefix + "playgame")){
     message.channel.sendMessage("🎮 Bienvenue dans le menu des Minis Jeux ! 🎮 \n `az.playgameHulk`      `az.playgameEat` \n `az.playgameDoodles`         `az.playgamePierreP` \n \n Voici les seuls jeux pour l'instant !")
@@ -134,7 +133,7 @@ if(message.content.startsWith(prefix + "pfc")){
 					} else if (botChoice === "Feuille") {
 						message.channel.send("😢 \n Vous avez perdu car **AzkunBot** a utilisé **Feuille**" + leaf);
 					} else if (botChoice === "Ciseaux") {
-						message.channel.send("😁 \n Vous gagnez car **AzkunBot** a utilisé **Ciseuax** " + scissors);
+						message.channel.send("😁 \n Vous gagnez car **AzkunBot** a utilisé **Ciseaux** " + scissors);
 					}
                     break;
 					case "Feuille":
@@ -192,8 +191,14 @@ if(message.content.startsWith(prefix + "8ball")){
     let reponse = (repliques[Math.floor(Math.random() * repliques.length)])
     message.channel.sendMessage(":8ball: **" + reponse + "**, " + message.author.username + ":8ball:")
 }
-    
 }
+if(message.content.startsWith(prefix + "guild")){
+    message.channel.sendMessage("Voici le lien d'invitation vers mon serveur de support: \n http://discord.gg/rp8Ydd7")
+}
+if(message.content.startsWith(prefix + "support")){
+    message.channel.sendMessage("Voici le lien d'invitation vers mon serveur de support: \n http://discord.gg/rp8Ydd7")
+}
+
 if(message.content.startsWith(prefix +"ping")){
     message.channel.sendMessage('Pong :ping_pong: `' + `${message.createdTimestamp - Date.now()}` + ' ms`');
 }
@@ -271,6 +276,26 @@ if(message.content.startsWith(prefix + "attackZombie")){
             return;
         }
     } 
+    if(message.content.startsWith(prefix + "suggest")){
+        var suggestion = args.slice(1).join(' ');
+       if(!suggestion) return message.channel.sendMessage('Merci d\'indiquer une suggestion à proposé !');
+       message.channel.sendMessage('Merci pour votre suggestion. Elle a bien été envoyé. L\'administration d\'**AzkunBot** va vous répondre.');
+       var suggest_embed = new Discord.RichEmbed()
+       .setAuthor(message.author.username, message.author.avatar)
+       .setDescription(suggestion)
+       .setFooter(`Envoyé depuis le serveur ${message.guild.name}`)
+       .setTimestamp()
+       .setColor(randomHex);
+       bot.channels.findAll('id', '460840979172425749').map(channel => channel.send(suggest_embed));
+    }
+    if(message.content.startsWith(prefix + "emoji")){
+        var emojis = message.guild.emojis;
+        if(!message.guild) return message.channel.sendMessage('Cette commmande doit être éxécuté sur une guild !')
+		if (!emojis.size) return message.channel.send(`Ce serveur n'a pas d'émojis perssonels.`);
+        message.channel.send(emojis.map(emoji => emoji.toString()).join(' '), { split: { char: ' ' } 
+    }
+    )};
+
 if(message.content.startsWith(prefix + "invite")){
                 message.channel.sendMessage(" 💌 Merci à toi si tu m'ajoute |  https://discordapp.com/api/oauth2/authorize?client_id=451814700653740032&scope=bot&permissions=1836383425")
  }});
